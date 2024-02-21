@@ -29,8 +29,25 @@ public T pop(){
     }
 }
 
-public void top() {
-    System.out.println("Resultado total: " + firstNode.getValue());
+public T peek(){
+    return firstNode.getValue();
+}
+
+public boolean isEmpty(){
+    return firstNode == null;
+}
+
+public void printStack() {
+    Node<T> current = firstNode;
+    System.out.print("[");
+    while (current != null) {
+        System.out.print(current.getValue());
+        if (current.getNext() != null) {
+            System.out.print(", ");
+        }
+        current = current.getNext();
+    }
+    System.out.println("]");
 }
 
 
