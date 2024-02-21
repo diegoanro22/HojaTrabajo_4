@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class Archivo {
     private File archivo;
 
-    public Archivo(String nameArchivo){
-        archivo = new File(nameArchivo);
+    public Archivo(){
+        archivo = new File("datos.txt");
     }
 
     public ArrayList<String> leerArchivo() throws IOException {

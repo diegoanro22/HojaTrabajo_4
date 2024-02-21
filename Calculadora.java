@@ -1,28 +1,64 @@
 import java.io.IOException;
 import java.util.ArrayList;
 
+
 public class Calculadora {
-    private Archivo archivoTxt;
+    private Archivo archivoTxt = new Archivo();
+    private CustomStack<Character> stackPostfix = new CustomStack<>();
 
 
 
 
     public String infixToPostfix(){
-        try {
-            ArrayList<String> listInfix = archivoTxt.leerArchivo();     
-            for (String linea : listInfix) {
-                if (linea.matches("-?\\d+(\\.\\d+)?")){
-                }
+        StringBuilder postfixExpression = new StringBuilder(); 
+
+    try {
+        ArrayList<String> listinfix = archivoTxt.leerArchivo();
+        System.out.println(listinfix);
+        for (String infixExpression : listinfix) {
+            for (char ch : infixExpression.toCharArray()) {
+                switch (ch) {
+                    case '(':
+                        stackPostfix.push(ch);
+                        break;
+                    case ')':
+                        while (!stackPostfix.isEmpty() && stackPostfix.peek() != '(') {
+                            postfixExpression.append(stackPostfix.pop());
+                        }
+                        stackPostfix.pop(); // Pop '('
+                        break;
+                    case '+':
+                    case '-':
+                        while (!stackPostfix.isEmpty() && (stackPostfix.peek() == '*' || stackPostfix.peek() == '/')) {
+                            postfixExpression.append(stackPostfix.pop());
+                        }
+                        stackPostfix.push(ch);
+                        break;
+                    case '*':
+                    case '/':
+                        while (!stackPostfix.isEmpty() && (stackPostfix.peek() == '*' || stackPostfix.peek() == '/')) {
+                            postfixExpression.append(stackPostfix.pop());
+                        }
+                        stackPostfix.push(ch);
+                        break;
+                    default:
+                        if (Character.isLetterOrDigit(ch)) {
+                            postfixExpression.append(ch);
+                        }
                 }
             }
-            
-        catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("No se ha encontrado el archivo");
+
+            while (!stackPostfix.isEmpty()) {
+                postfixExpression.append(stackPostfix.pop());
+            }
+
+            postfixExpression.append("\n");
         }
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.err.println("No se ha encontrado el archivo");
+    }
 
-    
-
-
+    return postfixExpression.toString();
 }
 }
