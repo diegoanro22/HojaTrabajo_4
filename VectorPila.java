@@ -1,6 +1,6 @@
 import java.util.Vector;
 
-public class VectorPila<T> extends AbstractCustomStack<T> {
+public class VectorPila<T> extends CustomStack<T> {
     private CustomStack<T> stack;
 
     public VectorPila() {
