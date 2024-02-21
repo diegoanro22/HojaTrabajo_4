@@ -1,9 +1,9 @@
-import java.util.ArrayList;
+import java.util.Vector;
 
-public class ArrayListPila<T> extends AbstractCustomStack<T> {
+public class VectorPila<T> extends AbstractCustomStack<T> {
     private CustomStack<T> stack;
 
-    public ArrayListPila() {
+    public VectorPila() {
         stack = new CustomStack<>();
     }
 
@@ -20,5 +20,11 @@ public class ArrayListPila<T> extends AbstractCustomStack<T> {
     @Override
     public boolean isEmpty() {
         return stack.isEmpty();
+    }
+
+    @Override
+    public T peek() {
+        return stack.peek();
+        
     }
 }
