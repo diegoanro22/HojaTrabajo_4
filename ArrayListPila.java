@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class ArrayListPila<T> extends AbstractCustomStack<T> {
+public class ArrayListPila<T> extends CustomStack<T> {
     private CustomStack<T> stack;
 
     public ArrayListPila() {
