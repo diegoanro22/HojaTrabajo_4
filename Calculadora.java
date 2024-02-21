@@ -3,10 +3,19 @@ import java.util.ArrayList;
 
 
 public class Calculadora {
+    private static Calculadora instanciaUnica;
     private Archivo archivoTxt = new Archivo();
     private CustomStack<Character> stackPostfix = new CustomStack<>();
 
+    //Metodos para el patron de diseño Singleton
+    private Calculadora() {}
 
+    public static Calculadora obtenerInstancia() {
+        if (instanciaUnica == null) {
+            instanciaUnica = new Calculadora();
+        }
+        return instanciaUnica;
+    }
 
 
     public String infixToPostfix(){
