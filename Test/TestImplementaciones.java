@@ -5,7 +5,7 @@ public class TestImplementaciones {
 
     @Test
     public void testArrayListPila() {
-        CustomStack<Integer> pila = new ArrayListPila<>();
+        StackInterface<Integer> pila = new ArrayListPila<>();
         pila.push(1);
         pila.push(2);
         pila.push(3);
@@ -18,7 +18,7 @@ public class TestImplementaciones {
 
     @Test
     public void testVectorPila() {
-        CustomStack<Integer> pila = new VectorPila<>();
+        VectorPila<Integer> pila = new VectorPila<>();
         pila.push(1);
         pila.push(2);
         pila.push(3);
