@@ -1,20 +1,17 @@
 import java.util.Vector;
 
-public class VectorPila<T> extends CustomStack<T> {
-    private CustomStack<T> stack;
+public class VectorPila<T> implements StackInterface<T> {
 
-    public VectorPila() {
-        stack = new CustomStack<>();
-    }
+    protected Vector<T> stack = new Vector<T>(); 
 
     @Override
     public void push(T item) {
-        stack.push(item);
+        stack.add(item); 
     }
 
     @Override
     public T pop() {
-        return stack.pop();
+        return stack.remove(stack.size() - 1);
     }
 
     @Override
@@ -24,7 +21,6 @@ public class VectorPila<T> extends CustomStack<T> {
 
     @Override
     public T peek() {
-        return stack.peek();
-        
+        return stack.get(stack.size() - 1); 
     }
 }
