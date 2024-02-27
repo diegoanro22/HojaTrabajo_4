@@ -6,7 +6,7 @@ public class TestImplementaciones {
     //Test de la implementacion de la clase Arraylist
     @Test
     public void TestArrayListPila() {
-        StackInterface<Integer> pila = new ArrayListPila<>();
+        StackInterface<Integer> pila = new ArrayListStack<>();
         pila.push(1);
         pila.push(2);
         pila.push(3);
@@ -20,7 +20,7 @@ public class TestImplementaciones {
     //Test de la implementacion de la clase Vector
     @Test
     public void TestVectorPila() {
-        VectorPila<Integer> pila = new VectorPila<>();
+        VectorStack<Integer> pila = new VectorStack<>();
         pila.push(1);
         pila.push(2);
         pila.push(3);

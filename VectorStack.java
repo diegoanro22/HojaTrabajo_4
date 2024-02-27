@@ -1,6 +1,6 @@
 import java.util.Vector;
 
-public class VectorPila<T> implements StackInterface<T> {
+public class VectorStack<T> implements StackInterface<T> {
 
     protected Vector<T> stack = new Vector<T>(); 
 

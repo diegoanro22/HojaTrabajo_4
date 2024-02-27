@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 
-public class ArrayListPila<T> implements StackInterface<T> {
+public class ArrayListStack<T> implements StackInterface<T> {
     protected ArrayList<T> stack = new ArrayList<>();
 
     @Override
