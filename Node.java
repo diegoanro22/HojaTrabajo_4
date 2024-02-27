@@ -6,11 +6,13 @@
 public class Node <T> {
     T value;
     Node<T> next;
+    Node<T> previous;
 
 
     public Node(T value){
         this.value = value;
         this.next=null;
+        this.previous=null;
     }
 
     public T getValue(){
@@ -21,12 +23,20 @@ public class Node <T> {
         return next;
     }
 
+    public Node<T> getPrevious() {
+        return previous;
+    }
+
     public void setValue(T newValue){
         value = newValue;
     }
 
     public void setNext(Node<T> n){
         next = n;
+    }
+
+    public void setPrevious(Node<T> p) {
+        previous = p;
     }
 
     
