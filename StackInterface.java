@@ -1,6 +1,6 @@
-public interface IntCustomStack<T> {
+public interface StackInterface<T> {
     void push(T value);
     T pop();
-    void top();
+    T peek();
     boolean isEmpty();
 }

@@ -3,7 +3,7 @@
  *Diego Rosales - 23258
 */
 
-public class CustomStack <T> {
+public class CustomStack <T> implements  StackInterface<T>{
     private Node<T> lastNode;
     private Node<T> firstNode;
 
