@@ -23,7 +23,7 @@ public class Calculadora {
 
     try {
         ArrayList<String> listinfix = archivoTxt.leerArchivo();
-        System.out.println(listinfix);
+        System.out.println("Expresion en infix: "+listinfix);
         for (String infixExpression : listinfix) {
             for (char ch : infixExpression.toCharArray()) {
                 switch (ch) {
@@ -69,5 +69,78 @@ public class Calculadora {
     }
 
     return postfixExpression.toString();
+}
+
+    public int compareTo(StackInterface<Integer> stack, ListInterface<Integer> list, String postfix){
+        if (stack == null){
+            return calcList(list, postfix);
+        }else{
+            return calcStack(stack, postfix);
+        }
+    }
+
+
+    public int calcStack(StackInterface<Integer> stack, String postfix) {
+        String[] expresion = postfix.split(" ");
+        for (String character : expresion) {
+            for (int i = 0; i < character.length()-1; i++) {
+                char caracter = character.charAt(i);
+                String strCaracter = String.valueOf(caracter);
+                if (esNumero(strCaracter)) {
+                    stack.push(Integer.parseInt(strCaracter));
+                } else {
+                    int b = stack.pop();
+                    int a = stack.pop();
+                    int resultado = operar(a, b, strCaracter);
+                    stack.push(resultado);
+                }
+            }
+        }
+        return stack.peek();
+    }
+
+    public int calcList(ListInterface<Integer> lista, String postfix) {
+        String[] expresion = postfix.split(" ");
+        
+        for (String character : expresion) {
+            for (int i = 0; i < character.length()-1; i++) {
+                char caracter = character.charAt(i);
+                String strCaracter = String.valueOf(caracter);
+                if (esNumero(strCaracter)) {
+                    lista.add(Integer.parseInt(strCaracter));
+                } else {
+                    int b = lista.remove(lista.size() - 1);
+                    int a = lista.remove(lista.size() - 1);;
+                    int resultado = operar(a, b, strCaracter);
+                    lista.add(resultado);
+                }
+            }
+        }
+        return lista.getHead();
+    }
+
+    
+
+
+    public boolean esNumero(String token) {
+        try {
+            Integer.parseInt(token);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    
+    public int operar(int a, int b, String operador) {
+        switch (operador) {
+            case "+": return a + b;
+            case "-": return a - b;
+            case "*": return a * b;
+            case "/": if (b == 0) throw new IllegalArgumentException("División por cero");
+                    return a / b;
+            default: throw new IllegalArgumentException("Operador desconocido: " + operador);
+        }
+
+
 }
 }

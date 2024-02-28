@@ -2,6 +2,7 @@ public class DoublyLinkedList<T> implements ListInterface<T> {
 
     private Node<T> head;
     private Node<T> tail;
+    private int size;
 
     @Override
     public void add(T value) {
@@ -14,43 +15,45 @@ public class DoublyLinkedList<T> implements ListInterface<T> {
             newNode.setPrevious(tail);
             tail = newNode;
         }
+        size+=1;
     }
 
     @Override
-    public void remove(T value) {
-        if (head == null) {
-            return;
+    public T remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Índice fuera de rango: " + index);
         }
-        if (head.getValue().equals(value)) {
-            head = head.getNext();
-            if (head != null) {
-                head.setPrevious(null);
-            } else {
-                tail = null; 
-            }
-            return;
-        }
+
         Node<T> current = head;
-        while (current.getNext() != null && !current.getNext().getValue().equals(value)) {
-            current = current.getNext();
+        for (int i = 0; i < index; i++) {
+            current = current.next;
         }
-        if (current.getNext() != null) {
-            current.setNext(current.getNext().getNext());
-            if (current.getNext() != null) {
-                current.getNext().setPrevious(current);
-            } else {
-                tail = current; 
-            }
+
+        T removedValue = current.value;
+
+        if (current.previous != null) {
+            current.previous.next = current.next;
+        } else {
+            head = current.next; // Removing the head
         }
+
+        if (current.next != null) {
+            current.next.previous = current.previous;
+        } else {
+            tail = current.previous; // Removing the tail
+        }
+
+        size--;
+        return removedValue;
     }
 
     @Override
-    public Node<T> get(int index) {
+    public T get(int index) {
         Node<T> current = head;
         int currentIndex = 0;
         while (current != null) {
             if (currentIndex == index) {
-                return current;
+                return current.getValue();
             }
             current = current.getNext();
             currentIndex++;
@@ -64,11 +67,16 @@ public class DoublyLinkedList<T> implements ListInterface<T> {
         return head == null;
     }
     
-    public Node<T> getHead() {
-        return head;
+    public T getHead() {
+        return head.getValue();
     }
 
-    public Node<T> getLast() {
-        return tail;
+    public T getLast() {
+        return tail.getValue();
+    }
+
+    @Override
+    public int size() {
+        return size;
     }
 }

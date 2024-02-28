@@ -33,4 +33,8 @@ public class ArrayListStack<T> implements StackInterface<T> {
         }
         return stack.get(stack.size() - 1);
     }
+
+    public void printStack() {
+
+    }
 }

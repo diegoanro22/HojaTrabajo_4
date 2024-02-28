@@ -1,6 +1,12 @@
-public class SinglyLinkedList<T>  implements ListInterface<T> {
+    public class SinglyLinkedList<T>  implements ListInterface<T> {
 
     private Node<T> head;
+    private int size;
+    
+    public SinglyLinkedList() {
+        this.head = null;
+        this.size = 0;
+    }
     
     @Override
     public void add(T value) {
@@ -14,33 +20,37 @@ public class SinglyLinkedList<T>  implements ListInterface<T> {
             }
             current.setNext(newNode);
         }
+        size++;
     }
 
     @Override
-    public void remove(T value) {
-        if (head == null) {
-            return;
+    public T remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Índice fuera de rango: " + index);
         }
-        if (head.getValue().equals(value)) {
-            head = head.getNext();
-            return;
+
+        Node<T> temp = head;
+        if (index == 0) {
+            head = temp.getNext();
+        } else {
+            Node<T> prev = null;
+            for (int i = 0; i < index; i++) {
+                prev = temp;
+                temp = temp.getNext();
+            }
+            prev.setNext(temp.getNext());
         }
-        Node<T> current = head;
-        while (current.getNext() != null && !current.getNext().getValue().equals(value)) {
-            current = current.getNext();
-        }
-        if (current.getNext() != null) {
-            current.setNext(current.getNext().getNext());
-        }
+        size--;
+        return temp.getValue();
     }
 
     @Override
-    public Node<T> get(int index) {
+    public T get(int index) {
         Node<T> current = head;
         int currentIndex = 0;
         while (current != null) {
             if (currentIndex == index) {
-                return current;
+                return current.getValue();
             }
             current = current.getNext();
             currentIndex++;
@@ -49,12 +59,12 @@ public class SinglyLinkedList<T>  implements ListInterface<T> {
         return null;
     }
 
-    public Node<T> getHead() {
-        return head;
+    public T getHead() {
+        return head.getValue();
     }
 
-    public Node<T> getLast() {
-        return getLast(head);
+    public T getLast() {
+        return getLast(head).getValue();
     }
     
     private Node<T> getLast(Node<T> node) {
@@ -67,6 +77,11 @@ public class SinglyLinkedList<T>  implements ListInterface<T> {
     @Override
     public boolean isEmpty() {
         return head == null;
+    }
+
+    @Override
+    public int size() {
+        return size;
     }
     
 
