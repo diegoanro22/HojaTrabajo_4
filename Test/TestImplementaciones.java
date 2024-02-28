@@ -1,3 +1,8 @@
+/*Universidad del Valle de Guatemala 
+ *Genser Andree - 23401
+ *Diego Rosales - 23258
+*/
+
 import static org.junit.Assert.*;
 import org.junit.Test;
 

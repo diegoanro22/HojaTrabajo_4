@@ -14,6 +14,9 @@ import java.util.ArrayList;
 public class Archivo {
     private File archivo;
 
+    /**
+     * Metodo para llamar y leer al archivo datos.txt
+     */
     public Archivo(){
         archivo = new File("datos.txt");
     }

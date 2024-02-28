@@ -1,10 +1,19 @@
+/*Universidad del Valle de Guatemala 
+ *Genser Andree - 23401
+ *Diego Rosales - 23258
+*/
+
 public class DoublyLinkedList<T> implements ListInterface<T> {
 
+    /**
+     *Creacion del tamaño para al almacenaje en la lista doble
+     */
     private Node<T> head;
     private Node<T> tail;
     private int size;
 
     @Override
+    //Añador valor
     public void add(T value) {
         Node<T> newNode = new Node<>(value);
         if (head == null) {
@@ -19,6 +28,7 @@ public class DoublyLinkedList<T> implements ListInterface<T> {
     }
 
     @Override
+    //Remover valor
     public T remove(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Índice fuera de rango: " + index);
@@ -48,6 +58,7 @@ public class DoublyLinkedList<T> implements ListInterface<T> {
     }
 
     @Override
+    //Metodo para obtener un valor
     public T get(int index) {
         Node<T> current = head;
         int currentIndex = 0;
@@ -63,6 +74,8 @@ public class DoublyLinkedList<T> implements ListInterface<T> {
 
 
     @Override
+    //Verifica si la pila esta vacia
+
     public boolean isEmpty() {
         return head == null;
     }

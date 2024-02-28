@@ -7,7 +7,8 @@ public class CustomStack <T> implements  StackInterface<T>{
     private Node<T> lastNode;
     private Node<T> firstNode;
 
-
+@Override
+//Agregar elemento a la pila
 public void push(T value){
     if (lastNode == null) {
         lastNode = new Node<T>(value);
@@ -19,6 +20,8 @@ public void push(T value){
     }
 }
 
+@Override
+//Eliminar elemento de la pila
 public T pop(){
     if (firstNode!= null){
         T value = firstNode.getValue();
@@ -29,14 +32,21 @@ public T pop(){
     }
 }
 
+@Override
+//Devuelve el ultimo elemento de la pila
 public T peek(){
     return firstNode.getValue();
 }
 
+@Override
+//Verifica si la pila esta vacia
 public boolean isEmpty(){
     return firstNode == null;
 }
 
+/**
+ * Metodo de output para mostrar el stack
+ */
 public void printStack() {
     Node<T> current = firstNode;
     System.out.print("[");

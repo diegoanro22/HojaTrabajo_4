@@ -9,6 +9,9 @@ public class Node <T> {
     Node<T> previous;
 
 
+    /**Metodo para asignale un valor T 
+     * @param value
+     */
     public Node(T value){
         this.value = value;
         this.next=null;

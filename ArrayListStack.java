@@ -1,7 +1,15 @@
+/*Universidad del Valle de Guatemala 
+ *Genser Andree - 23401
+ *Diego Rosales - 23258
+*/
+
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 
 public class ArrayListStack<T> implements StackInterface<T> {
+    /**
+     *Creacion del almacenamiento en array
+     */
     protected ArrayList<T> stack = new ArrayList<>();
 
     @Override

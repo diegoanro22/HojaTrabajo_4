@@ -1,13 +1,22 @@
+/*Universidad del Valle de Guatemala 
+ *Genser Andree - 23401
+ *Diego Rosales - 23258
+*/
+    
     public class SinglyLinkedList<T>  implements ListInterface<T> {
 
     private Node<T> head;
     private int size;
     
+    /**
+     *Creacion para almacenar en la lista unica
+     */
     public SinglyLinkedList() {
         this.head = null;
         this.size = 0;
     }
     
+    //Metodo para agregar
     @Override
     public void add(T value) {
         Node<T> newNode = new Node<>(value);
@@ -23,6 +32,7 @@
         size++;
     }
 
+    //Metodo para remover 
     @Override
     public T remove(int index) {
         if (index < 0 || index >= size) {
@@ -44,6 +54,7 @@
         return temp.getValue();
     }
 
+    //Metodo para obtener valor
     @Override
     public T get(int index) {
         Node<T> current = head;

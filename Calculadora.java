@@ -1,3 +1,8 @@
+/*Universidad del Valle de Guatemala 
+ *Genser Andree - 23401
+ *Diego Rosales - 23258
+*/
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -10,6 +15,9 @@ public class Calculadora {
     //Metodos para el patron de diseño Singleton
     private Calculadora() {}
 
+    /**Metodo para llamar a calculadora y aplicar singleton
+     * @return Calculadora
+     */
     public static Calculadora obtenerInstancia() {
         if (instanciaUnica == null) {
             instanciaUnica = new Calculadora();
@@ -18,6 +26,9 @@ public class Calculadora {
     }
 
 
+    /**Metodo para convertir los datos de infix a postfix
+     * @return postfix
+     */
     public String infixToPostfix(){
         StringBuilder postfixExpression = new StringBuilder(); 
 
